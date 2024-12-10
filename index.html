@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ascend Project Coin</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+		.eagle-lake-regular {
+			font-family: "Eagle Lake", serif;
+			font-weight: 400;
+			font-style: normal;
+		}
+		body {
+			background-color:#000000;
+			color:#ffffff;
+			font-family: "Eagle Lake";
+		}
+        #logo {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+        }
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+			transform-origin: center;
+            animation: rotate 10s linear infinite;
+            z-index: 1;
+        }
+        .foreground-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+		#wallet { filter:grayscale(1); }
+		#wallet:hover { filter:grayscale(0); }
+		#sol {
+			height:30px;
+			vertical-align:middle;	
+			border-radius: 30px;
+			border: 2px solid gray;
+		}
+		#roadmap {
+			border:0;
+		}
+        #heavenPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 1);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+		#heavenPopup video {
+            max-width: 80%;
+            max-height: 80%;
+        }
+		#copy { transition: all 0.3s ease; }
+		#copy.animate {
+		  animation: scaleUp 1s ease;
+		}
+		@keyframes scaleUp {
+		  0% {
+			transform: scale(1);
+		  }
+		  50% {
+			transform: scale(1.2);
+		  }
+		  100% {
+			transform: scale(1);
+		  }
+		}	
+		@media screen and (max-width: 480px) {
+			body { font-size:12px }
+			#logo { 
+				width:350px;
+				height:350px;
+			}
+			#wallet:hover { filter:grayscale(1); }
+			#walletAddress { 
+				word-wrap: break-word;
+				word-break: break-all;
+			}
+		}			
+</style>
+</head>
+<body>
+	<center>
+		<div id="heavenPopup">
+			<video controls id="heavenVideo">
+				<source src="heaven.mp4" type="video/mp4">
+			</video>
+			<audio id="heavenAudio">
+				<source src="heaven.mp3" type="audio/mp3">
+			</audio>
+		</div>	
+		<div id="logo">
+			<img src="trust.png" alt="Background" class="background-image">
+			<img src="heaven.png" alt="Foreground" class="foreground-image" usemap="#prophecy">
+			<map name="prophecy">
+				<area target="" alt="Heaven" title="Heaven" coords="250,250,33" href="" shape="circle" onclick="GoToHeaven(); return false;">
+			</map>	
+		</div>
+		<br>
+		<span id="wallet"><img src="sol.svg" id="sol" /> <span id="walletAddress">kwhHzM1eC5fC9SdJC1uB3D31x778ShQijPNY2ToLNYd</span> <img src="copy-regular.svg" id="copy"/></span>		
+		<br>
+		<br>
+		<table id="roadmap">
+			<tbody>
+				<tr>
+					<td>✔</td>
+					<td>The Foundation: In silence, the ground is prepared, the first stones are laid.</td>
+				</tr>
+				<tr>
+					<td>✔</td>
+					<td>The Carvings: Symbols appear, hidden meanings etched in stone, calling the chosen.</td>
+				</tr>
+				<tr>
+					<td>❌</td>
+					<td>The Invitation: A quiet offering, for those with faith to step forward.</td>
+				</tr>
+				<tr>
+					<td>❌</td>
+					<td>The Prayer: The collective strength of the devoted guides the way.</td>
+				</tr>					
+				<tr>
+					<td>❌</td>
+					<td>ASCENSION!: Together, like the sun, we rise.</td>
+				</tr>					
+			</tbody>
+		</table>
+	</center>		
+    <script>
+	
+		document.getElementById('copy').addEventListener('click', function () {
+		  const img = this;
+		  img.classList.add('animate');
+		  img.addEventListener('animationend', () => {
+			img.classList.remove('animate');
+		  }, { once: true });
+		  copyWalletAddress();
+		});	
+
+		function copyWalletAddress() {		
+			const spanElement = document.getElementById('walletAddress');
+			const spanText = spanElement.innerText;			
+            navigator.clipboard.writeText(spanText).then(function() {		
+                console.log('Copied to clipboard!');
+            }).catch(function(error) {
+                console.error('Error copying to clipboard: ', error);
+            });
+		}
+	
+        const videoPopup = document.getElementById('heavenPopup');
+        const videoPlayer = document.getElementById('heavenVideo');
+		const audioPlayer = document.getElementById('heavenAudio');
+		
+		function GoToHeaven() {
+			videoPopup.style.display = 'flex';
+			videoPlayer.play();
+			audioPlayer.play();
+			audioPlayer.loop = true;
+		}
+        videoPlayer.addEventListener('ended', () => {
+            videoPopup.style.display = 'none';
+            videoPlayer.currentTime = 0;
+			audioPlayer.pause();
+			audioPlayer.currentTime = 0;
+        });
+    </script>
+</body>
+</html>
