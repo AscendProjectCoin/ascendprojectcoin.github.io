@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ascend Project Coin</title>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
-		.eagle-lake-regular {
-			font-family: "Eagle Lake", serif;
-			font-weight: 400;
-			font-style: normal;
-		}
-		body {
-			background-color:#000000;
-			color:#ffffff;
-			font-family: "Eagle Lake";
-		}
+	@import url('https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap');
+	.eagle-lake-regular {
+		font-family: "Eagle Lake", serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+	body {
+		background-color:#000000;
+		color:#ffffff;
+		font-family: "Eagle Lake";
+	}
         #logo {
             position: relative;
             width: 500px;
@@ -48,17 +48,24 @@
                 transform: rotate(360deg);
             }
         }
-		#wallet { filter:grayscale(1); }
-		#wallet:hover { filter:grayscale(0); }
-		#sol {
-			height:30px;
-			vertical-align:middle;	
-			border-radius: 30px;
-			border: 2px solid gray;
-		}
-		#roadmap {
-			border:0;
-		}
+	#wallet { filter:grayscale(1); }
+	#wallet:hover { filter:grayscale(0); }
+	#wallet:hover > #sol {
+		border: 2px solid transparent;
+		background: linear-gradient(-90deg, cyan, purple);
+		background-clip: padding-box;
+	}
+	#sol {
+		height:29px;
+		vertical-align:middle;	
+		border-radius: 29px;
+		border: 2px solid gray;
+		padding:1px;
+
+	}
+	#roadmap {
+		border:0;
+	}
         #heavenPopup {
             display: none;
             position: fixed;
@@ -71,7 +78,7 @@
             align-items: center;
             z-index: 1000;
         }
-		#heavenPopup video {
+	#heavenPopup video {
             max-width: 80%;
             max-height: 80%;
         }
@@ -96,7 +103,6 @@
 				width:350px;
 				height:350px;
 			}
-			#wallet:hover { filter:grayscale(1); }
 			#walletAddress { 
 				word-wrap: break-word;
 				word-break: break-all;
